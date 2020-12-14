@@ -33,7 +33,7 @@ def insert_into_db(dal, vacancy_objects):
         logging.info("Сохраняю вакансии в БД")
         dal.session.bulk_save_objects(vacancy_objects)
         dal.session.commit()
-
+        dal.session.close()
     except DBAPIError as exc:
         logging.info(f'{exc}')
         dal.session.rollback()
