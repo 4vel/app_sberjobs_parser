@@ -45,24 +45,24 @@ class Vacancy(BaseModel):
         return f'{self.vactitle} {self.vacdescription}'
 
 
-class User(BaseModel):
-    """ Модель данных для таблицы вакансий """
+class TableUser(BaseModel):
+    """ Модель данных для таблицы c данными пользователей """
 
     __tablename__ = 'user'
 
-    user_id = Column(VARCHAR())
+    user_id = Column(VARCHAR(), primary_key = True)
+    user_name = Column(VARCHAR())
     user_email = Column(VARCHAR(255))
     user_keywords = Column(VARCHAR())
 
-    def __init__(self, vacid, vactitle, vacdescription, vacdate, vacstatus):
-        self.vacid = vacid
-        self.vactitle = vactitle
-        self.vacdescription = vacdescription
-        self.vacdate = vacdate
-        self.vacstatus = vacstatus
+    def __init__(self, user_id, user_name, user_email, user_keywords):
+        self.user_id = user_id
+        self.user_name = user_name
+        self.user_email = user_email
+        self.user_keywords = user_keywords
 
     def __repr__(self):
-        return f'{self.vactitle} {self.vacdescription}'
+        return f'{self.user_id} {self.user_email} {self.user_keywords}'
 
 
 class DataAccessLayer:
